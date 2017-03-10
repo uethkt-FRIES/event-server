@@ -48,25 +48,25 @@ module.exports.register = function register(server, options, next) {
         });
     });
 
-    let app_id = config('FB_APP_ID');
-    let app_secret = config('FB_APP_SECRET');
-    let host = config('SERVER_HOST');
-
-    server.register(Bell, (err) => {
-        server.auth.strategy('facebook', 'bell', {
-            provider: 'facebook',
-            password: '3c0bcd61ba83c729fa8c7faeff016ef6',
-            isSecure: false,
-            // You'll need to go to https://developers.facebook.com/ and set up a
-            // Website application to get started
-            // Once you create your app, fill out Settings and set the App Domains
-            // Under Settings >> Advanced, set the Valid OAuth redirect URIs to include http://<yourdomain.com>/bell/door
-            // and enable Client OAuth Login
-            clientId: app_id,
-            clientSecret: app_secret,
-            location: host
-        });
-    });
+    // let app_id = config('FB_APP_ID');
+    // let app_secret = config('FB_APP_SECRET');
+    // let host = config('SERVER_HOST');
+    //
+    // server.register(Bell, (err) => {
+    //     server.auth.strategy('facebook', 'bell', {
+    //         provider: 'facebook',
+    //         password: '3c0bcd61ba83c729fa8c7faeff016ef6',
+    //         isSecure: false,
+    //         // You'll need to go to https://developers.facebook.com/ and set up a
+    //         // Website application to get started
+    //         // Once you create your app, fill out Settings and set the App Domains
+    //         // Under Settings >> Advanced, set the Valid OAuth redirect URIs to include http://<yourdomain.com>/bell/door
+    //         // and enable Client OAuth Login
+    //         clientId: app_id,
+    //         clientSecret: app_secret,
+    //         location: host
+    //     });
+    // });
 };
 
 module.exports.register.attributes = {

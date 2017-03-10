@@ -33,3 +33,23 @@ module.exports.login = {
         }
     }
 };
+
+module.exports.registerFcm = {
+    handler: function (req, rep) {
+        let payload = req.payload;
+        console.log(payload);
+
+        service.db.insertUserFcm(payload).then(user=>{
+            rep(ResponseJSON('ok', user));
+        }).catch(err=>{
+            rep(Boom.badData(err));
+        })
+    },
+    validate: {
+        payload: {
+            email: Joi.string().email().required(),
+            event_id: Joi.string().required(),
+            fcm_token: Joi.string().required()
+        }
+    }
+};

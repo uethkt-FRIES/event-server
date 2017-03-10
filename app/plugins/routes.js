@@ -14,11 +14,11 @@ module.exports.register = (server, options, next) => {
             }
         },
 
-        {
-            method: '*',
-            path: '/auth/fb',
-            config: controller.auth.facebook
-        },
+        // {
+        //     method: '*',
+        //     path: '/auth/fb',
+        //     config: controller.auth.facebook
+        // },
 
         // user
         {
@@ -26,12 +26,29 @@ module.exports.register = (server, options, next) => {
             path: '/login',
             config: controller.user.login
         },
+        {
+            method : ['POST'],
+            path: '/fcm',
+            config: controller.user.registerFcm
+        },
 
         // event
         {
             method : ['GET'],
             path: '/event',
             config: controller.event.getInfor
+        },
+        {
+            method : ['POST'],
+            path: '/postpool',
+            config: controller.event.postPool
+        },
+
+        // upload
+        {
+            method : ['POST'],
+            path: '/map',
+            config: controller.upload.uploadImage
         }
 
     ]);
