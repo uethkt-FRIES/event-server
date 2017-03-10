@@ -21,3 +21,11 @@ module.exports.getTokenUser = (user_infor) => {
         resolve(res);
     });
 };
+
+module.exports.generateToken = (user_infor) => {
+    return new Promise((resolve, reject) => {
+        let tokenUser = jwt.sign(user_infor, SERVER_KEY);
+
+        resolve(tokenUser);
+    });
+};

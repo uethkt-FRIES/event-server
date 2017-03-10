@@ -38,12 +38,23 @@ module.exports.facebook = {
             )
             .then(
                 user => {
-                    reply(ResponseJSON('Login success', user));
+                    return service.user.generateToken(user);
+                }
+            )
+            .then(
+                token => {
+                    let web_token = config('WEB_CLIENT', 'https://web.edoo.vn');
+                    let url_redirect = web_token + '/auth/' + token;
+
+                    reply.redirect(url_redirect);
                 }
             )
             .catch(
                 error => {
                     console.log(error);
+                    let host = config('SERVER_HOST');
+
+                    reply.redirect(host + '/auth/fb');
                 }
             );
     }
