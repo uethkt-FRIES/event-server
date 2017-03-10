@@ -6,10 +6,13 @@ const Models = global.Models;
 const Joi = require('joi');
 const ResponseJSON = global.helpers.ResponseJSON;
 const service = require('../services');
-
+const fbService = service.fb;
 
 const helpers = global.helpers;
 const config = helpers.config;
+
+const Mongoose = require('mongoose');
+let User = Mongoose.model('User');
 
 module.exports.facebook = {
     auth: {
@@ -22,7 +25,26 @@ module.exports.facebook = {
         }
 
         let data = request.auth.credentials;
+        let {token, profile} = data;
+        let {id, email, displayName} = profile;
 
-        reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
+        fbService.getAvatar(id)
+            .then(
+                avatar => {
+                    let name = displayName;
+
+                    return User.findOrCreate({name, email, token, avatar});
+                }
+            )
+            .then(
+                user => {
+                    reply('Login success', ResponseJSON(user));
+                }
+            )
+            .catch(
+                error => {
+                    console.log(error);
+                }
+            );
     }
 };
