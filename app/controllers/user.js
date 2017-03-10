@@ -16,7 +16,6 @@ module.exports.login = {
         console.log(payload);
         service.db.insertUserEvent(payload)
             .then(user=>{
-                console.log(user);
                 return service.user.getTokenUser(payload);
             })
             .then(res => {

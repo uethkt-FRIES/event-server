@@ -23,13 +23,10 @@ module.exports.insertUser = function (user_info) {
 
 // User event
 module.exports.insertUserEvent = function (user_info) {
-    return User.findOne(user_info)
+    return UserEvent.findOne(user_info)
         .then(user => {
-
-            console.log(user);
-
             if (!_.isEmpty(user)) {
-                console.log('da ton tai user', user);
+                console.log('da ton tai user');
                 return Promise.resolve(user);
             } else {
                 let user = new UserEvent(user_info);
