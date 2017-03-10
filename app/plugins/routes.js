@@ -14,11 +14,18 @@ module.exports.register = (server, options, next) => {
             }
         },
 
-        // log receiver
+        // user
         {
             method : ['POST'],
-            path: '/log',
-            config: controller.logReceiver.log
+            path: '/login',
+            config: controller.user.login
+        },
+
+        // event
+        {
+            method : ['GET'],
+            path: '/event',
+            config: controller.event.getInfor
         }
 
     ]);

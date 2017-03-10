@@ -7,5 +7,5 @@ const Auth = require('./plugins/auth');
 module.exports = [
     // Inert,
     // Vision,
-    // Auth
+    Auth
 ];

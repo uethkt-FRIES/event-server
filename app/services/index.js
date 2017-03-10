@@ -2,5 +2,6 @@
 
 module.exports = {
     db: require('./database'),
-    logReceiver: require('./log-receiver')
+    user: require('./user'),
+    event: require('./event')
 };

@@ -1,5 +1,6 @@
 'use strict';
 
 module.exports = {
-    logReceiver : require('./log-receive')
+    user : require('./user'),
+    event : require('./event')
 };
