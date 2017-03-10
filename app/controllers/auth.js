@@ -38,7 +38,7 @@ module.exports.facebook = {
             )
             .then(
                 user => {
-                    reply('Login success', ResponseJSON(user));
+                    reply(ResponseJSON('Login success', user));
                 }
             )
             .catch(
