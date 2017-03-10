@@ -14,6 +14,12 @@ module.exports.register = (server, options, next) => {
             }
         },
 
+        {
+            method: '*',
+            path: '/auth/fb',
+            config: controller.auth.facebook
+        },
+
         // user
         {
             method : ['POST'],

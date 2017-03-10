@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
-    user : require('./user'),
-    event : require('./event')
+    auth: require('./auth'),
+    user: require('./user'),
+    event: require('./event')
 };
