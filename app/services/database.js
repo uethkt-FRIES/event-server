@@ -5,7 +5,7 @@ const async = require('async');
 
 const Mongoose = require('mongoose');
 let User = Mongoose.model('User');
-let ChatSession = Mongoose.model('ChatSession');
+let UserEvent = Mongoose.model('UserEvent');
 
 const helpers = global.helpers;
 const config = helpers.config;
@@ -21,13 +21,25 @@ module.exports.insertUser = function (user_info) {
     return user.save();
 };
 
-// Chat session
+// User event
+module.exports.insertUserEvent = function (user_info) {
+    return User.findOne(user_info)
+        .then(user => {
 
-module.exports.findAllSession = function () {
-    return ChatSession.find();
+            console.log(user);
+
+            if (!_.isEmpty(user)) {
+                console.log('da ton tai user', user);
+                return Promise.resolve(user);
+            } else {
+                let user = new UserEvent(user_info);
+                return user.save();
+            }
+        });
 };
 
-module.exports.insertLogSession = (log_session) => {
-    let logSession = new ChatSession(log_session);
-    return logSession.save();
+module.exports.findUsersByEventId = function (event_id) {
+    return UserEvent.find({
+        event_id
+    });
 };

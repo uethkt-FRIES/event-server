@@ -13,8 +13,14 @@ const config = helpers.config;
 module.exports.login = {
     handler: function (req, rep) {
         let payload = req.payload;
-        service.user.getTokenUser(payload)
+        console.log(payload);
+        service.db.insertUserEvent(payload)
+            .then(user=>{
+                console.log(user);
+                return service.user.getTokenUser(payload);
+            })
             .then(res => {
+
                 rep(ResponseJSON('Success!', res));
             })
             .catch(err => {
