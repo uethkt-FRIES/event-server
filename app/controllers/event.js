@@ -26,6 +26,7 @@ module.exports.postPool = {
         let payload = req.payload;
 
         let apiKey = 'AAAAAQrifT0:APA91bGude_DQ9IgAFRTXGSOYA7QbaAJNlCeaHd-jo7uAsaA7npLteHunahJbH6h5cbsafTlEJDW2YWuek6qUyJoxN2mVJ1IPrgNo330j_pDsx4RCtqT3oWhxbCZRhkG-hDHPxkh6eOK';
+
         let dataSend = {
             event_id: payload.event_id,
             question_id: payload.question_id,
@@ -38,7 +39,7 @@ module.exports.postPool = {
             type: 1
         };
 
-        service.db.findUserFcmByEventId(event_id)
+        service.db.findUserFcmByEventId(payload.event_id)
             .then(users => {
                 for (let user of users) {
                     pushFirebaseNoti(apiKey, user.fcm_token, dataSend);
