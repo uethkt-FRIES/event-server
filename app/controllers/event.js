@@ -76,7 +76,7 @@ module.exports.postPool = {
             question_id: Joi.string().required(),
             title: Joi.string().required(),
             content: Joi.string().required(),
-            answer: Joi.string().optional(),
+            as1: Joi.string().optional(),
             as2: Joi.string().optional(),
             as3: Joi.string().optional(),
             as4: Joi.string().optional()
