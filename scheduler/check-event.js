@@ -2,7 +2,7 @@
 let admin = require("firebase-admin");
 let async = require('async');
 
-let serviceAccount = require("./serviceAccountKey.json");
+let serviceAccount = require("./../serviceAccountKey.json");
 
 let defaultAppConfig = {
     credential: admin.credential.cert(serviceAccount),

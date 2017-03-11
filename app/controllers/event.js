@@ -26,18 +26,29 @@ module.exports.postPool = {
         let user_data = req.auth.credentials;
         let payload = req.payload;
 
-        let apiKey = '';
+        let apiKey = 'AAAAAQrifT0:APA91bGude_DQ9IgAFRTXGSOYA7QbaAJNlCeaHd-jo7uAsaA7npLteHunahJbH6h5cbsafTlEJDW2YWuek6qUyJoxN2mVJ1IPrgNo330j_pDsx4RCtqT3oWhxbCZRhkG-hDHPxkh6eOK';
         let event_id = payload.event_id;
+        let dataSend = {
+            event_id: event_id,
+            question_id: payload.question_id,
+            title: payload.title,
+            content: payload.content,
+            as1: payload.as1 || '',
+            as2: payload.as2 || '',
+            as3: payload.as3 || '',
+            as4: payload.as4 || '',
+            type: 1
+        };
 
         service.db.findUserFcmByEventId(event_id)
             .then(users => {
                 for (let user of users) {
-                    pushFirebaseNoti(apiKey,user.fcm_token, {title, choices});
+                    pushFirebaseNoti(apiKey, user.fcm_token, dataSend);
                 }
 
                 rep(ResponseJSON('ok'));
             })
-            .catch(err=>{
+            .catch(err => {
                 rep(Boom.badData(err));
             });
     },

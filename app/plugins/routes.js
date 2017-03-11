@@ -47,8 +47,13 @@ module.exports.register = (server, options, next) => {
         // upload
         {
             method : ['POST'],
-            path: '/map',
+            path: '/img',
             config: controller.upload.uploadImage
+        },
+        {
+            method : ['POST'],
+            path: '/map',
+            config: controller.upload.uploadMap
         }
 
     ]);
