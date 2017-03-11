@@ -52,7 +52,7 @@ function checkEachEvent(eventKey, cb) {
             let timeline = timelines[i];
 
             let now = Date.now();
-            if (!timeline.is_online && timeline.start_time <= now) {
+            if (timeline.enabled && !timeline.is_online && timeline.start_time <= now) {
                 console.log(timeline.start_time);
                 console.log(now);
                 indexUpdateArr.push(i);
