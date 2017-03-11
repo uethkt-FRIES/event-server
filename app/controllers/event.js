@@ -55,8 +55,9 @@ module.exports.postPool = {
     validate: {
         payload: {
             event_id: Joi.string().required(),
+            question_id: Joi.string().required(),
             title: Joi.string().required(),
-            choices: Joi.string().required() // Tu;quy;sdfksjdkfjsdf
+            content: Joi.string().required() // Tu;quy;sdfksjdkfjsdf
         }
     }
 };

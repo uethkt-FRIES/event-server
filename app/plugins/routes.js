@@ -40,7 +40,7 @@ module.exports.register = (server, options, next) => {
         },
         {
             method : ['POST'],
-            path: '/postpool',
+            path: '/postquestion',
             config: controller.event.postPool
         },
 
