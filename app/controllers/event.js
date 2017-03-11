@@ -86,6 +86,5 @@ function pushFirebaseNoti(apiKey, deviceToken, data) {
 
     request.post(param_post, function (err, response, body) {
         console.log(err);
-        // console.log(response);
     });
 }
