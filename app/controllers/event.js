@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 const Boom = require('boom');
-const Models = global.Models;
+const request = require('request');
 const Joi = require('joi');
 const ResponseJSON = global.helpers.ResponseJSON;
 const service = require('../services');
