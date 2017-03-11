@@ -57,7 +57,11 @@ module.exports.postPool = {
             event_id: Joi.string().required(),
             question_id: Joi.string().required(),
             title: Joi.string().required(),
-            content: Joi.string().required() // Tu;quy;sdfksjdkfjsdf
+            content: Joi.string().required(),
+            as1: Joi.string(),
+            as2: Joi.string(),
+            as3: Joi.string(),
+            as4: Joi.string()
         }
     }
 };
