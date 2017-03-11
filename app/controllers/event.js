@@ -66,18 +66,11 @@ module.exports.postPool = {
 };
 
 function pushFirebaseNoti(apiKey, deviceToken, data) {
-    // console.log('api key: ' + apiKey);
-    // console.log('device: ' + deviceToken);
 
     let urlReq = 'https://fcm.googleapis.com/fcm/send';
 
     let form = {
         to: deviceToken,
-        // "notification": {
-        //     "body": "This week's edition is now available.",
-        //     "title": "NewsMagazine.com",
-        //     "icon": "new"
-        // },
         data: data
     };
 
