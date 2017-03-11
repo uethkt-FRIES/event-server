@@ -21,6 +21,23 @@ module.exports.getInfor = {
     }
 };
 
+module.exports.postVote = {
+    handler: function (req, rep) {
+        let payload = req.payload;
+
+        service.fcmDb.postVote(payload.event_id, payload.question_id, payload.answer);
+
+        rep(ResponseJSON('ok'));
+    },
+    validate: {
+        payload: {
+            event_id: Joi.string().required(),
+            question_id: Joi.string().required(),
+            answer: Joi.string().required()
+        }
+    }
+};
+
 module.exports.postPool = {
     handler: function (req, rep) {
         let payload = req.payload;
@@ -42,6 +59,8 @@ module.exports.postPool = {
         service.db.findUserFcmByEventId(payload.event_id)
             .then(users => {
                 for (let user of users) {
+                    console.log('User to send noti FCM');
+                    console.log(user);
                     pushFirebaseNoti(apiKey, user.fcm_token, dataSend);
                 }
 
@@ -57,7 +76,7 @@ module.exports.postPool = {
             question_id: Joi.string().required(),
             title: Joi.string().required(),
             content: Joi.string().required(),
-            as1: Joi.string().optional(),
+            answer: Joi.string().optional(),
             as2: Joi.string().optional(),
             as3: Joi.string().optional(),
             as4: Joi.string().optional()
@@ -85,6 +104,6 @@ function pushFirebaseNoti(apiKey, deviceToken, data) {
     };
 
     request.post(param_post, function (err, response, body) {
-        console.log(err);
+        if (err) console.log(err);
     });
 }

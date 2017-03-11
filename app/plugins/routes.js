@@ -43,6 +43,11 @@ module.exports.register = (server, options, next) => {
             path: '/postquestion',
             config: controller.event.postPool
         },
+        {
+            method : ['POST'],
+            path: '/postvote',
+            config: controller.event.postVote
+        },
 
         // upload
         {
