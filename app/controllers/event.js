@@ -23,13 +23,11 @@ module.exports.getInfor = {
 
 module.exports.postPool = {
     handler: function (req, rep) {
-        let user_data = req.auth.credentials;
         let payload = req.payload;
 
         let apiKey = 'AAAAAQrifT0:APA91bGude_DQ9IgAFRTXGSOYA7QbaAJNlCeaHd-jo7uAsaA7npLteHunahJbH6h5cbsafTlEJDW2YWuek6qUyJoxN2mVJ1IPrgNo330j_pDsx4RCtqT3oWhxbCZRhkG-hDHPxkh6eOK';
-        let event_id = payload.event_id;
         let dataSend = {
-            event_id: event_id,
+            event_id: payload.event_id,
             question_id: payload.question_id,
             title: payload.title,
             content: payload.content,
