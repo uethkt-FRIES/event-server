@@ -56,6 +56,9 @@ module.exports.postPool = {
             type: 1
         };
 
+        console.log('data send FCM');
+        console.log(dataSend);
+
         service.db.findUserFcmByEventId(payload.event_id)
             .then(users => {
                 for (let user of users) {
