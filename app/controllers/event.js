@@ -44,7 +44,7 @@ module.exports.pushNoti = {
     handler: function (req, rep) {
         let payload = req.payload;
 
-        service.fcmDb.pushNoti(payload.title, payload.content);
+        service.fcmDb.pushNoti(payload.event_id, payload.title, payload.content);
 
         let dataSend = {
             event_id: payload.event_id,
