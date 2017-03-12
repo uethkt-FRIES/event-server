@@ -47,7 +47,10 @@ module.exports.pushNoti = {
         service.fcmDb.pushNoti(payload.title, payload.content);
 
         let dataSend = {
-            event_id: payload.event_id, title: payload.title, content: payload.content
+            event_id: payload.event_id,
+            title: payload.title,
+            content: payload.content,
+            type: 2
         };
 
         service.db.findUserFcmByEventId(payload.event_id)
