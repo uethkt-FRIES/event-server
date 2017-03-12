@@ -31,3 +31,14 @@ module.exports.postVote = (event_id, question_id, answer) => {
     let eventUpdate = admin.database().ref("events/" + event_id + '/questions/' + question_id + '/stats/' + answer);
     eventUpdate.push({answer: answer});
 };
+
+module.exports.pushNoti = (title, content) => {
+// Initialize the default app
+//     admin.initializeApp(defaultAppConfig);
+    let created_at = Date.now();
+
+// Get a database reference to our blog
+//     let db = admin.database();
+    let eventUpdate = admin.database().ref("events/notifications");
+    eventUpdate.push({title, content, created_at});
+};

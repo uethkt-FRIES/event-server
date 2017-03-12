@@ -48,6 +48,11 @@ module.exports.register = (server, options, next) => {
             path: '/postvote',
             config: controller.event.postVote
         },
+        {
+            method : ['POST'],
+            path: '/sendnoti',
+            config: controller.event.pushNoti
+        },
 
         // upload
         {

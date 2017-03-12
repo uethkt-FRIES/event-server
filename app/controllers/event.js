@@ -10,6 +10,8 @@ const service = require('../services');
 const helpers = global.helpers;
 const config = helpers.config;
 
+let apiKey = 'AAAAAQrifT0:APA91bGude_DQ9IgAFRTXGSOYA7QbaAJNlCeaHd-jo7uAsaA7npLteHunahJbH6h5cbsafTlEJDW2YWuek6qUyJoxN2mVJ1IPrgNo330j_pDsx4RCtqT3oWhxbCZRhkG-hDHPxkh6eOK';
+
 module.exports.getInfor = {
     handler: function (req, rep) {
         let user_data = req.auth.credentials;
@@ -38,11 +40,42 @@ module.exports.postVote = {
     }
 };
 
-module.exports.postPool = {
+module.exports.pushNoti = {
     handler: function (req, rep) {
         let payload = req.payload;
 
-        let apiKey = 'AAAAAQrifT0:APA91bGude_DQ9IgAFRTXGSOYA7QbaAJNlCeaHd-jo7uAsaA7npLteHunahJbH6h5cbsafTlEJDW2YWuek6qUyJoxN2mVJ1IPrgNo330j_pDsx4RCtqT3oWhxbCZRhkG-hDHPxkh6eOK';
+        service.fcmDb.pushNoti(payload.title, payload.content);
+
+        let dataSend = {
+            event_id: payload.event_id, title: payload.title, content: payload.content
+        };
+
+        service.db.findUserFcmByEventId(payload.event_id)
+            .then(users => {
+                for (let user of users) {
+                    console.log('User to send noti FCM');
+                    console.log(user);
+                    pushFirebaseNoti(apiKey, user.fcm_token, dataSend);
+                }
+
+                rep(ResponseJSON('ok'));
+            })
+            .catch(err => {
+                rep(Boom.badData(err));
+            });
+    },
+    validate: {
+        payload: {
+            event_id: Joi.string().required(),
+            title: Joi.string().required(),
+            content: Joi.string().required()
+        }
+    }
+};
+
+module.exports.postPool = {
+    handler: function (req, rep) {
+        let payload = req.payload;
 
         let dataSend = {
             event_id: payload.event_id,
